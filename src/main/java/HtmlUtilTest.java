@@ -31,7 +31,7 @@ public class HtmlUtilTest {
 
         HtmlPage page = null;
         try {
-            page = webClient.getPage("https://www.ysts8.com/play_25831_51_1_5.html");//尝试加载上面图片例子给出的网页
+            page = webClient.getPage("https://www.ysts8.com/play_25831_51_1_5.html  ");//尝试加载上面图片例子给出的网页
             System.out.println();
 
         } catch (Exception e) {
