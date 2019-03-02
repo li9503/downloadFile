@@ -30,6 +30,11 @@
         <artifactId>htmlunit</artifactId>
         <version>2.27</version>
     </dependency>
+    <dependency>
+        <groupId>cn.edu.hfut.dmic.webcollector</groupId>
+        <artifactId>WebCollector</artifactId>
+        <version>2.52</version>
+    </dependency>
 </dependencies>
 
 </project>
