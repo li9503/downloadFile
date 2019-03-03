@@ -32,7 +32,7 @@ public class HtmlUtilTest {
         webClient.setAjaxController(new NicelyResynchronizingAjaxController());//很重要，设置支持AJAX
         HtmlPage page = null;
         try {
-            page = webClient.getPage("https://www.ysts8.com/play/flw.asp?url=%D0%FE%BB%C3%D0%A1%CB%B5%2F%CE%D2%D4%DA%C4%A9%CA%C0%D3%D0%CC%D7%B7%BF%2F007%2Emp3&jiidx=/play%5F25826%5F49%5F1%5F8%2Ehtml&jiids=/play%5F25826%5F49%5F1%5F6%2Ehtml&id=25826&ji=7&said=49");//尝试加载上面图片例子给出的网页
+            page = webClient.getPage("https://www.ysts8.com/Ys_so.asp?keyword=医师怪谈&stype=1");//尝试加载上面图片例子给出的网页
         } catch (Exception e) {
             e.printStackTrace();
         }finally {

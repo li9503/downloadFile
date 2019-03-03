@@ -1,17 +1,21 @@
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
+import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 
 public class HttpClient {
 
     public static void main(String[] args) {
-      String re=  doGet("https://www.ysts8.com/play/flw.asp?url=%D0%FE%BB%C3%D0%A1%CB%B5%2F%CE%D2%D4%DA%C4%A9%CA%C0%D3%D0%CC%D7%B7%BF%2F007%2Emp3&jiidx=/play%5F25826%5F49%5F1%5F8%2Ehtml&jiids=/play%5F25826%5F49%5F1%5F6%2Ehtml&id=25826&ji=7&said=49");
-        System.out.println(re);
+        String keyWord="宇宙";
+        try {
+            String urlStr = URLEncoder.encode(keyWord, "gb2312");
+            String re=  doGet("https://www.ysts8.com/Ys_so.asp?stype=1&keyword="+urlStr);
+            System.out.println(re);
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+
     }
     public static String doGet(String httpurl) {
         HttpURLConnection connection = null;

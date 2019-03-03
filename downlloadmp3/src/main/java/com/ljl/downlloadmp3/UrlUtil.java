@@ -21,7 +21,7 @@ public class UrlUtil {
         return HTML_REG.matcher(str);
     }
 
-    public static String getHtml(String url) {
+    public static Document getHtml(String url) {
 
         Document doc = null;
         try {
@@ -31,18 +31,18 @@ public class UrlUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return doc.toString();
+        return doc;
     }
 
     public static String getDownloadUrl(String url) {
-        String mp3Html = getHtml(url);
+        String mp3Html = getHtml(url).toString();
         Matcher results = getRes(mp3Html, "<iframe", "iframe>");
         String result = "";
         while (results.find()) {
             result = results.group();
         }
         String iframe = result.substring(result.indexOf("src") + 5, result.indexOf("id=\"play\"") - 2).replace("amp;","");
-        String mp3Url = getHtml("https://www.ysts8.com" + iframe);
+        String mp3Url = getHtml("https://www.ysts8.com" + iframe).toString();
         String murl=mp3Url.substring(mp3Url.indexOf("murl",mp3Url.indexOf("preurl =")) , mp3Url.indexOf("'.mp3?';")+6);
         String uurl = mp3Url.substring(mp3Url.indexOf("'.mp3?';") + 10, mp3Url.indexOf("function next()") - 3);
         String mp3 = mp3Url.substring(mp3Url.indexOf("mp3:'"), mp3Url.indexOf("}).jPlayer(\"play\");") - 3);

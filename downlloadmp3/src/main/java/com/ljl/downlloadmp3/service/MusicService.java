@@ -10,4 +10,7 @@ package com.ljl.downlloadmp3.service;
 public interface MusicService {
     String getDownLoadUrl(String mp3Url);
 
+    String searchByName(String name);
+
+    String getInfo(String url);
 }

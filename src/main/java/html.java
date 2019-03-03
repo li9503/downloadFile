@@ -4,15 +4,17 @@ import org.jsoup.nodes.Document;
 
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class html {
     public static void main(String[] args) {
 
-        String html = getHtml("https://www.ysts8.com/Yshtml/Ys25829.html");
+       /* String html = getHtml("https://www.ysts8.com/Yshtml/Ys25829.html").toString();
         Matcher results = getRes(html, "<li>", "</li>");
         while (results.find()) {
             String result = results.group();
@@ -21,8 +23,18 @@ public class html {
                 String url=result.substring(result.indexOf("/play"),result.indexOf("\" title"));
                 System.out.println(title+"------------"+getMP3Url("https://www.ysts8.com/"+url));
             }
-        }
+        }*/
+        String keyWord="宇宙";
+        try {
+            String urlStr = URLEncoder.encode(keyWord, "gb2312");
+            Document re=  getHtml("https://www.ysts8.com/Yshtml/Ys567.html");
+            System.out.println(re.toString());
 
+
+            System.out.println(re.getElementsByClass("ny_l"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
     }
 
     public static Matcher getRes(String str, String start, String end) {
@@ -30,7 +42,7 @@ public class html {
         return HTML_REG.matcher(str);
     }
 
-    public static String getHtml(String url) {
+    public static Document getHtml(String url) {
 
         Document doc = null;
         try {
@@ -40,11 +52,11 @@ public class html {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return doc.toString();
+        return doc;
     }
 
     public static String getMP3Url(String url) {
-        String mp3Html = getHtml(url);
+        String mp3Html = getHtml(url).toString();
         Matcher results = getRes(mp3Html, "<iframe", "iframe>");
         String result = "";
         while (results.find()) {
@@ -53,7 +65,7 @@ public class html {
 //        System.out.println(result);
         String iframe = result.substring(result.indexOf("src") + 5, result.indexOf("id=\"play\"") - 2).replace("amp;","");
 //        System.out.println(iframe);
-        String mp3Url = getHtml("https://www.ysts8.com" + iframe);
+        String mp3Url = getHtml("https://www.ysts8.com" + iframe).toString();
 //        System.out.println(mp3Url);
         String murl=mp3Url.substring(mp3Url.indexOf("murl",mp3Url.indexOf("preurl =")) , mp3Url.indexOf("'.mp3?';")+6);
         String uurl = mp3Url.substring(mp3Url.indexOf("'.mp3?';") + 10, mp3Url.indexOf("function next()") - 3);
