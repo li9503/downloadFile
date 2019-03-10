@@ -1,6 +1,8 @@
 package com.ljl.downlloadmp3.service;
 
 
+import java.util.Map;
+
 /**
  * @Author 李景磊
  * @Description
@@ -12,5 +14,5 @@ public interface MusicService {
 
     String searchByName(String name);
 
-    String getInfo(String url);
+    Map getInfo(String url);
 }

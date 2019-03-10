@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="en"/>
+<html lang="en">
+　　<script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+</html>
 <meta charset="UTF-8"/>
-    <title>Title</title>
-<script type="text/javascript" src="//mat1.gtimg.com/libs/jquery/1.12.0/jquery.min.js"></script>
+<title>主页</title>
 
 <script>
     function subName() {
         var name = $('#name').val();
         $.ajax({
-            type: "post",
+            type: "get",
             url: '/search',
-            data:{name:name},
+            data: {name: name},
             success: function (data) {
                 $("#res").html(data);
             }
@@ -21,23 +22,28 @@
         var name = $('#url').val();
         $.ajax({
             type: "get",
-            url: '/getDownloadUrl?mp3Url='+name,
+            url: '/getDownloadUrl?mp3Url=' + name,
             success: function (data) {
                 $("#mp3Url").html(data);
             }
         });
     }
 </script>
-<head>gsdd</head>
+<head>
+    <div align="center">
+        <h1>有声小说搜索</h1>
+    </div>
+</head>
 <br>
 请输入要搜索的小说名：
-<input id="name" type="text"/><button id="subName" onclick="subName()">提交</button>
+<input id="name" type="text"/>
+<button id="subName" onclick="subName()">提交</button>
 <span>搜索结果</span>
-<div  id="res"></div>
+<div id="res"></div>
 <br>
 <br>
-请输入要获取的URL：
-<input id="url" type="text"/><button  onclick="getDownloadUrl()">提交</button>
-下载链接：<a id="mp3Url"></a>
+<audio src="/getDownloadUrl?mp3Url=/play_23383_50_1_1.html"
+       controls>adasd
+</audio>
 </body>
 </html>

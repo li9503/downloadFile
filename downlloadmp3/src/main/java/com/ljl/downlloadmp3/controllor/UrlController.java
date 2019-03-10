@@ -3,9 +3,13 @@ package com.ljl.downlloadmp3.controllor;
 
 import com.ljl.downlloadmp3.service.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 /**
  * @Author 李景磊
@@ -29,19 +33,19 @@ public class UrlController {
 
 
 
-    @PostMapping("/search")
+    @GetMapping("/search")
     public String search(String name) {
         System.out.println(name);
         String result = musicService.searchByName(name);
-        System.out.println(result);
+//        System.out.println(result);
         return result;
     }
 
-    @GetMapping("/test")
-    public String get(String url) {
-        System.out.println(url);
-       String mp3Url= musicService.getInfo(url);
-        System.out.println(mp3Url);
+    @GetMapping("/getList")
+    public Map get(String url) {
+//        System.out.println(url);
+       Map mp3Url= musicService.getInfo(url);
+//        System.out.println(mp3Url);
         return mp3Url;
     }
 

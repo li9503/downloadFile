@@ -2,6 +2,7 @@ package com.ljl.downlloadmp3.controllor;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 /**
  * @Author 李景磊
@@ -17,7 +18,10 @@ public class PageController {
     }
 
     @GetMapping("/searchResult")
-    public String searchResult(){
-        return "searchResult";
+    public ModelAndView searchResult(String title){
+        ModelAndView modelAndView=new ModelAndView("searchResult");
+        System.out.println(title);
+        modelAndView.addObject("result",title);
+        return modelAndView;
     }
 }
